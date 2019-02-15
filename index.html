@@ -13,9 +13,20 @@
         <link rel="stylesheet" href="tools/bundle-css.min.css">
     </head>
     <body>
-        <section>
-            <div id='chart-container'></div>
-        </section>
+        <div id='geocluster-interactive-wrapper'>
+            <div id='geocluster-interactive-overlay'></div>
+            <div id='geocluster-interactive-container'>
+                <h4>Show me the hotspots for...</h4>
+                <div id='search-wrapper'>
+                    <input type="text" id="geocluster-search" placeholder="">
+                    <ul id="geocluster-ul"></ul>
+                </div>
+                <div id='geocluster-map-container'>
+                    <div id='geocluster-map-cover'></div>
+                    <img src='assets/imgs/yoga.png'>
+                </div>
+            </div>
+        </div>
         <script src='js/tools/d3.min.js'></script>
         <script src='js/tools/jquery.min.js'></script>
         <script src="tools/bundle-js.min.js" async defer></script>

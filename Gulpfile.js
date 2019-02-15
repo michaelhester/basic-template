@@ -30,13 +30,15 @@ gulp.task('styles', function () {
     .pipe(cssmin())
 	.pipe(rename({suffix: '.min'}))
     // Output
-    .pipe(gulp.dest('tools'));
+	.pipe(gulp.dest('tools'))
+	//Live reload
+	.pipe(browserSync.stream());
 });
 
 // Gulp task to minify JavaScript files
 gulp.task('scripts', function() {
 	return gulp.src([
-        'js/chart.js',
+        'js/search.js',
         'js/entry.js',
         'js/resize.js'
     ])
@@ -60,6 +62,7 @@ gulp.task('serve', ['scripts'], function() {
         server: "./"
     });
 
+	gulp.watch("css/*.css", ['styles']);
     gulp.watch("js/*.js", ['scripts']);
 	gulp.watch("./*.html").on('change', browserSync.reload);
 });
