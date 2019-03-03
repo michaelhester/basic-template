@@ -21,7 +21,9 @@ const AUTOPREFIXER_BROWSERS = [
 
 // Gulp task to minify CSS files
 gulp.task('styles', function () {
-	return gulp.src('css/style.css')
+	return gulp.src([
+        'css/*.css'
+    ])
 	// Auto-prefix css styles for cross browser compatibility
 	.pipe(autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
 	// Bundle css files
@@ -30,15 +32,15 @@ gulp.task('styles', function () {
     .pipe(cssmin())
 	.pipe(rename({suffix: '.min'}))
     // Output
-    .pipe(gulp.dest('tools'));
+	.pipe(gulp.dest('tools'))
+	//Live reload
+	.pipe(browserSync.stream());
 });
 
 // Gulp task to minify JavaScript files
 gulp.task('scripts', function() {
 	return gulp.src([
-        'js/chart.js',
-        'js/entry.js',
-        'js/resize.js'
+        'js/*.js'
     ])
 	// Bundle js files
 	.pipe(concat('bundle-js.js'))
@@ -60,7 +62,8 @@ gulp.task('serve', ['scripts'], function() {
         server: "./"
     });
 
-    gulp.watch("js/*.js", ['scripts']);
+	gulp.watch("js/*.js", ['scripts']);
+	gulp.watch("css/*.css", ['styles']);
 	gulp.watch("./*.html").on('change', browserSync.reload);
 });
 
@@ -73,7 +76,7 @@ gulp.task('serve', ['scripts'], function() {
 );*/
 
 // Clean output directory
-gulp.task('clean', () => del(['tools/**/*.css', 'tools/bundle-js.min.js']));
+gulp.task('clean', () => del(['tools/bundle-css.css', 'tools/bundle-js.min.js']));
 
 // Main gulp task to run styles, scripts, images
 gulp.task('default', ['clean'], function() {
