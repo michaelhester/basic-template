@@ -24,7 +24,7 @@ function resizeGeneral() {
         isMobile = true;
     } 
 
-    initChart();
+    //initChart();
 }
 
 window.addEventListener('resize', function() {

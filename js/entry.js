@@ -2,12 +2,6 @@
 var cleanedData,
     nestedData;
 
-window.onbeforeunload = function () {
-    window.scrollTo(0, 0);
-}
-
-getData();
-
 function getData() {
 	// Load data sources
     var sampleDataUnresolved = d3.csv('assets/data/sample_file.csv').then(function(rawData) { return rawData; });
