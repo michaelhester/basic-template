@@ -24,14 +24,14 @@ function resizeGeneral() {
         isMobile = true;
     } 
 
-    //initChart();
+    initChart();
 }
 
 window.addEventListener('resize', function() {
     var currentWidth = window.innerWidth;
 	if (previousWidth !== currentWidth) {
         previousWidth = currentWidth;
-       
+
         resizeGeneral();
 	}
 })
